@@ -7,7 +7,7 @@ using UnityEngine;
 public class RoomListItem : MonoBehaviour
 {
     [SerializeField] TMP_Text roomNameText;
-    RoomInfo info;
+    public RoomInfo info;
 
     public void Setup(RoomInfo roomInfo)
     {
