@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 		rb = GetComponent<Rigidbody>();
 		PV = GetComponent<PhotonView>();
 
-		//playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
+		playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
 	}
 
     private void Start()
