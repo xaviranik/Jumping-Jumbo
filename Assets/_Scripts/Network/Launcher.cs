@@ -22,8 +22,6 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     [SerializeField] GameObject startGameButton;
 
-    List<RoomInfo> roomInfos;
-
     void Awake()
     {
         Instance = this;
@@ -35,20 +33,18 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Connecting to Server...");
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AutomaticallySyncScene = true;
-
-        roomInfos = new List<RoomInfo>();
     }
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnJoinedLobby()
     {
         MenuManager.Instance.OpenMenu("title");
         PhotonNetwork.NickName = "Player " + Random.Range(0, 5000).ToString("0000");
-        roomInfos.Clear();
 
         Debug.Log("Joined Lobby");
     }
@@ -117,31 +113,20 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         MenuManager.Instance.OpenMenu("title");
-        roomInfos.Clear();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        foreach (Transform transform in roomListContent)
+        foreach (Transform trans in roomListContent)
         {
-            Destroy(transform.gameObject);
+            Destroy(trans.gameObject);
         }
 
         for (int i = 0; i < roomList.Count; i++)
         {
-            if (!roomList[i].RemovedFromList)
-            {
-                roomInfos.Add(roomList[i]);
-            }
-            else
-            {
-                roomInfos.RemoveAll(room => room.Name == roomList[i].Name);
-            }
-        }
-
-        for (int i = 0; i < roomInfos.Count; i++)
-        {
-            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().Setup(roomInfos[i]);
+            if (roomList[i].RemovedFromList)
+                continue;
+            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().Setup(roomList[i]);
         }
     }
 
