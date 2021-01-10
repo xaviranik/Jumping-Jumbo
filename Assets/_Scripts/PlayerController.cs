@@ -84,6 +84,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 		if (!PV.IsMine)
 			return;
 
-		rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+		rb.MovePosition(Vector3.Lerp(rb.position, rb.position + transform.TransformDirection(moveAmount), Time.deltaTime));
 	}
 }

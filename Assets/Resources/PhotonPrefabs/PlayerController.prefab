@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 6202714714565950626}
   - component: {fileID: 5262660471823716835}
   - component: {fileID: 4815362679673247406}
-  - component: {fileID: 1551241777999233186}
+  - component: {fileID: 4804036078964971860}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -419,7 +419,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1551241777999233186}
+  - {fileID: 4804036078964971860}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -457,7 +457,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &1551241777999233186
+--- !u!114 &4804036078964971860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
